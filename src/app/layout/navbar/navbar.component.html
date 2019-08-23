@@ -1,41 +1,39 @@
-<nav class="navbar navbar-light">
-	<div class="container">
-		<a class="navbar-brand" routerLink="/">Aviago</a>
-		<!-- Logged out user -->
-		<ul *ngIf="!isLoggedIn" class="nav navbar-nav pull-xs-right">
-			<li class="nav-item">
-				<!-- Add "active" class when you're on that page" -->
-				<a class="nav-link" routerLink="/">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" routerLink="/register" routerLinkActive="active">Sign up</a>
-			</li>
-		</ul>
+<section class="header">
+  <!-- Main container -->
+  <nav class="level header__container">
+    <!-- Left side -->
+    <div class="level-left header__left">
+      <p class="level-item"><img alt="profile picture" src="../../../assets/user.png" width="30"/></p>
 
-		<!-- Logged in user -->
-		<ul *ngIf="isLoggedIn" class="nav navbar-nav pull-xs-right">
-			<li class="nav-item">
-				<!-- Add "active" class when you're on that page" -->
-				<a class="nav-link active" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" routerLink="/editor" routerLinkActive="active">
-					<i class="ion-compose"></i>&nbsp;New Post
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" routerLink="/settings" routerLinkActive="active">
-					<i class="ion-gear-a"></i>&nbsp;Settings
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" [routerLink]="['/profile', user.username]" routerLinkActive="active">
-					<img [src]="user.image" *ngIf="user.image" class="user-pic" /> {{ user.username }}
-				</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+      <div class="level-item">
+        <p class="subtitle is-5">
+          AVIAGO
+        </p>
+      </div>
+
+      <p class="level-item"><a>Emergency</a></p>
+
+    </div>
+
+    <!-- Right side -->
+    <div class="level-right header__right">
+      <div class="level-item">
+        <p class="level-item"><a>Tasks</a></p>
+        <p class="level-item"><a>Schedule</a></p>
+
+        <div class="field has-addons">
+          <p class="control">
+            <input class="input" type="text" placeholder="Find a TowTug">
+          </p>
+          <p class="control">
+            <button class="button">
+              Search
+            </button>
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+  </nav>
+</section>

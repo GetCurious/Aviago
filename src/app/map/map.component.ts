@@ -17,8 +17,10 @@ import {fromLonLat} from 'ol/proj';
 
 // TODO CORE
 // https://openlayers.org/en/latest/examples/feature-move-animation.html
+// https://openlayers.org/en/latest/examples/animation.html
 // https://openlayers.org/en/latest/examples/geolocation.html
 // https://openlayers.org/en/latest/examples/geolocation-orientation.html
+// https://stackoverflow.com/questions/47374641/sidebar-in-javascriptopenlayers
 
 // TODO Map Limiting features
 // https://openlayers.org/en/latest/examples/zoom-constrained.html
