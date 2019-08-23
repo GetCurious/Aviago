@@ -1,19 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GroundSupportEquipments} from '../model/ground-support-equipments.model';
 
-import TileLayer from 'ol/layer/Tile';
-import XYZ from 'ol/source/XYZ';
-import OSM from 'ol/source/OSM';
+import Map from 'ol/Map.js';
+import View from 'ol/View.js';
+import {MultiPoint, Point} from 'ol/geom.js';
+import TileLayer from 'ol/layer/Tile.js';
+import OSM from 'ol/source/OSM.js';
+import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style.js';
 import {fromLonLat} from 'ol/proj';
-import {Map, View} from 'ol';
-import {Tile, Vector} from 'ol/layer';
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-
-import Overlay from 'ol/Overlay';
-import TileJSON from 'ol/source/TileJSON';
-import VectorSource from 'ol/source/Vector';
-import {Icon, Style} from 'ol/style';
 
 @Component({
   selector: 'app-map',
@@ -23,7 +17,6 @@ import {Icon, Style} from 'ol/style';
 
 
 export class MapComponent implements OnInit {
-  map: Map;
   @ViewChild('map', {static: true}) mapElement: any;
 
   GSE: GroundSupportEquipments = {
@@ -107,7 +100,7 @@ export class MapComponent implements OnInit {
           description: 'A380 Ground Power Unit',
           nextMaintenanceDate: new Date(),
           previousMaintenanceDate: new Date(),
-          current_coordinates: [101.685149, 2.740894],
+          current_coordinates: [101.684249, 2.741094],
           picture: 'src/assets/groundpowerunit.jpeg'
         },
       }
@@ -118,32 +111,49 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.map = new Map({
-      target: this.mapElement.nativeElement,
+    const map = new Map({
       layers: [
         new TileLayer({
-          source: new OSM(),
+          source: new OSM()
         })
       ],
+      target: this.mapElement.nativeElement,
       view: new View({
         center: fromLonLat([101.685149, 2.740894]),
-        zoom: 15
+        zoom: 17
       })
     });
-  }
 
-  onClick() {
-    const marker = new Feature({
-      geometry: new Point(fromLonLat([101.685149, 2.740894]))
+    const TowTug = new Style({
+      image: new CircleStyle({
+        radius: 5,
+        fill: new Fill({color: 'yellow'}),
+        stroke: new Stroke({color: 'red', width: 0.5})
+      })
     });
 
-    const vectorSource = new Vector({
-      features: [marker]
+    const GPU = new Style({
+      image: new CircleStyle({
+        radius: 5,
+        fill: new Fill({color: 'green'}),
+        stroke: new Stroke({color: 'red', width: 0.5})
+      })
     });
 
-    const markerVectorLayer = new Vector({
-      source: vectorSource,
+    map.on('postcompose', (event) => {
+      const vectorContext = event.vectorContext;
+
+      // TowTug
+      var headPoint = new Point(fromLonLat([101.685149, 2.740894]));
+      vectorContext.setStyle(TowTug);
+      vectorContext.drawGeometry(headPoint);
+
+      // GPU
+      var headPoint = new Point(fromLonLat([101.684249, 2.741094]));
+      vectorContext.setStyle(GPU);
+      vectorContext.drawGeometry(headPoint);
+
     });
-    this.map.addLayer(markerVectorLayer);
+    map.render();
   }
 }
