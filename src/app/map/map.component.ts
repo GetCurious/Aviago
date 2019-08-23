@@ -15,6 +15,35 @@ import {fromLonLat} from 'ol/proj';
   styleUrls: ['./map.component.styl']
 })
 
+// TODO CORE
+// https://openlayers.org/en/latest/examples/feature-move-animation.html
+// https://openlayers.org/en/latest/examples/geolocation.html
+// https://openlayers.org/en/latest/examples/geolocation-orientation.html
+
+// TODO Map Limiting features
+// https://openlayers.org/en/latest/examples/zoom-constrained.html
+// https://openlayers.org/en/latest/examples/wmts-hidpi.html
+// https://openlayers.org/en/latest/examples/utfgrid.html
+
+// TODO Points
+// https://openlayers.org/en/latest/examples/popup.html
+// https://openlayers.org/en/latest/examples/overlay.html
+// https://openlayers.org/en/latest/examples/vector-tile-info.html
+// https://openlayers.org/en/latest/examples/vector-labels.html
+// https://openlayers.org/en/latest/examples/icon.html
+// https://openlayers.org/en/latest/examples/icon-negative.html
+// https://openlayers.org/en/latest/examples/gpx.html
+
+// https://openlayers.org/en/latest/examples/getfeatureinfo-image.html
+// https://openlayers.org/en/latest/examples/getfeatureinfo-tile.html
+
+// TODO Optional features
+// https://openlayers.org/en/latest/examples/measure.html
+// https://openlayers.org/en/latest/examples/lazy-source.html
+// https://openlayers.org/en/latest/examples/draw-freehand.html
+// https://openlayers.org/en/latest/examples/flight-animation.html
+// https://openlayers.org/en/latest/examples/here-maps.html
+// https://openlayers.org/en/latest/examples/graticule.html
 
 export class MapComponent implements OnInit {
   @ViewChild('map', {static: true}) mapElement: any;
